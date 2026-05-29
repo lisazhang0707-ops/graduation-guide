@@ -409,7 +409,11 @@
 <header class="header">
   <h1>毕业生求职指南</h1>
   <p>从投简历到入职，每一步都走对</p>
-  <p style="margin-top:8px;font-size:0.95rem;opacity:0.85;">所有你现在觉得迷茫和焦虑的事，每一个职场人都经历过。别慌，慢慢来比较快。</p>
+  <p style="margin-top:12px;font-size:1.1rem;opacity:0.9;font-style:italic;letter-spacing:0.06em;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6;position:relative;">
+    <span style="position:absolute;left:-18px;top:-8px;font-size:2rem;opacity:0.4;font-family:serif;">"</span>
+    所有你现在觉得迷茫和焦虑的事，每一个职场人都经历过。<br>别慌，慢慢来比较快。
+    <span style="position:absolute;right:-18px;bottom:-20px;font-size:2rem;opacity:0.4;font-family:serif;">"</span>
+  </p>
   <button class="theme-toggle" id="themeToggle" aria-label="切换暗色/亮色模式">🌙 暗色模式</button>
 </header>
 
@@ -1453,6 +1457,16 @@
       progressFill.style.width = Math.round(done / total * 100) + '%';
     }
   }
+
+  // Dynamically inject checkboxes into all cards that don't have one
+  document.querySelectorAll('.card').forEach(function(card) {
+    var header = card.querySelector('.card-header');
+    if (!header || header.querySelector('.card-checkbox')) return;
+    var cb = document.createElement('span');
+    cb.className = 'card-checkbox';
+    cb.setAttribute('data-checkbox', 'true');
+    header.insertBefore(cb, header.firstChild);
+  });
 
   document.querySelectorAll('.card-checkbox').forEach(function(cb) {
     cb.addEventListener('click', function(e) {
