@@ -646,6 +646,179 @@
         </div>
       </div>
     </div>
+
+    <!-- AI 技能学习板块 -->
+    <div class="section-intro" style="margin-top:32px;border-left-color:var(--accent);background:linear-gradient(135deg,#fef0ea,transparent);">
+      <strong>🤖 AI 技能学习指南</strong> — 非技术背景的毕业生如何从零开始学 AI，以及需要投入什么
+    </div>
+    <div class="accordion">
+
+      <!-- Card 1: 哪些AI技能值得学 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-checkbox" data-checkbox="true">✓</span>
+          <span class="card-icon c1">🎯</span>
+          <span class="card-title">非技术岗毕业生最值得学的 AI 技能（按优先级）</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>对于非技术背景的毕业生（市场营销、产品、运营、销售管理等方向），AI 技能的核心价值是<strong>提效 + 视野</strong>，不是写模型。以下按投入产出比排序：</p>
+            <table class="mini-table">
+              <thead>
+                <tr><th>优先级</th><th>技能</th><th>为什么重要</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="highlight">⭐</span></td>
+                  <td><strong>AI 工具深度使用</strong></td>
+                  <td>ChatGPT / Claude / DeepSeek / Kimi 等大模型的日常使用能力。不只是聊天，而是写 prompt、处理文档、做分析、写代码辅助。这是最基础也最容易被低估的技能。</td>
+                </tr>
+                <tr>
+                  <td><span class="highlight">⭐</span></td>
+                  <td><strong>Python 入门 + 数据分析</strong></td>
+                  <td>学会用 Python 做基础数据处理（pandas）、自动化（脚本）、调 API。不需要做开发，但「能用 Python 处理数据」是未来几年所有岗位的加分项。</td>
+                </tr>
+                <tr>
+                  <td><span class="highlight">⭐</span></td>
+                  <td><strong>Prompt Engineering（提示工程）</strong></td>
+                  <td>结构化写 prompt 的能力：角色设定、任务拆解、few-shot、chain-of-thought。不只是「帮我写个文案」，而是能精准控制输出质量和格式。</td>
+                </tr>
+                <tr>
+                  <td><span class="highlight">⭐⭐</span></td>
+                  <td><strong>AI 产品思维</strong></td>
+                  <td>理解 AI 能力边界：什么场景适合用 AI、什么是幻觉问题、RAG 是什么、Agent 是什么。不需要懂技术实现，但要懂产品决策。</td>
+                </tr>
+                <tr>
+                  <td><span class="highlight">⭐⭐</span></td>
+                  <td><strong>AI Agent / 工作流搭建</strong></td>
+                  <td>用 n8n / Dify / Coze / 飞书多维表格AI 等平台搭建简单的自动化工作流。不需要写代码，拖拽式搭建。</td>
+                </tr>
+                <tr>
+                  <td><span class="highlight">⭐⭐⭐</span></td>
+                  <td><strong>AIGC 内容生成</strong></td>
+                  <td>用 Midjourney / Stable Diffusion 做图、用 Suno / ElevenLabs 做音频、用 Runway / Sora 做视频。营销岗位刚需。</td>
+                </tr>
+                <tr>
+                  <td><span class="highlight">⭐⭐⭐</span></td>
+                  <td><strong>AI 伦理 & 合规基础</strong></td>
+                  <td>版权问题、数据隐私、AI 生成内容标注要求。中大型公司的 AI 岗面试中，这个方向的问题出现频率越来越高。</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="margin-top:10px"><span class="highlight">核心建议</span> 先聚焦前三项（工具使用 + Python 入门 + Prompt），1-2 个月内就能掌握。后四项在入门后再逐步扩展。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: 怎么学 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-checkbox" data-checkbox="true">✓</span>
+          <span class="card-icon c2">📚</span>
+          <span class="card-title">怎么学：30 天入门路线 + 免费资源</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>30 天入门计划（每天 1-2 小时）：</strong></p>
+            <table class="mini-table">
+              <thead>
+                <tr><th>阶段</th><th>时间</th><th>学什么</th><th>资源（全部免费）</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>第 1 周</strong></td>
+                  <td>7 天</td>
+                  <td>AI 工具深度使用：每天用 ChatGPT/Claude 完成 3 个真实工作场景任务（写邮件、整理数据、做分析）</td>
+                  <td>ChatGPT / Claude / DeepSeek 官网直接注册使用</td>
+                </tr>
+                <tr>
+                  <td><strong>第 2 周</strong></td>
+                  <td>7 天</td>
+                  <td>Prompt 工程：学习结构化 prompt 框架，完成标准化的 prompt 练习</td>
+                  <td>OpenAI Prompt Engineering Guide（中文版）、吴恩达《ChatGPT Prompt Engineering for Developers》（免费 Coursera）</td>
+                </tr>
+                <tr>
+                  <td><strong>第 3 周</strong></td>
+                  <td>7 天</td>
+                  <td>Python 入门：变量、数据类型、基础语法 + 用 AI 辅助写简单脚本</td>
+                  <td>夜曲编程（免费部分）、Python 官方教程中文版、Microsoft Learn Python 入门</td>
+                </tr>
+                <tr>
+                  <td><strong>第 4 周</strong></td>
+                  <td>7 天</td>
+                  <td>实战项目：用 AI 工具 + Python 完成一个小项目（如自动整理数据报告、批量处理文件）</td>
+                  <td>Kaggle 入门数据集、Google Colab 免费 GPU</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="margin-top:10px"><strong>进阶免费资源：</strong></p>
+            <ul>
+              <li>吴恩达《AI For Everyone》（Coursera 免费旁听）— 非技术 AI 入门圣经</li>
+              <li>李宏毅《机器学习》中文课程（YouTube）— 适合想了解原理的同学</li>
+              <li>飞书/钉钉官方 AI 文档 — 国内企业 AI 工具使用指南</li>
+              <li>GitHub / Hugging Face 上的 AI 产品 demo — 刷一刷能快速了解 AI 能做到什么</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: 装备和预算 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-checkbox" data-checkbox="true">✓</span>
+          <span class="card-icon c3">💻</span>
+          <span class="card-title">需要什么装备和预算</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>硬件需求：</strong></p>
+            <ul>
+              <li><strong>最低配置：</strong>任何一台能联网的电脑（2019 年以后的笔记本即可），不需要独立显卡。大部分 AI 工具都是云端运行的（ChatGPT、Claude、Kimi 等）。</li>
+              <li><strong>推荐配置：</strong>内存 16GB+ 的 Windows/Mac 笔记本，方便同时开浏览器 + AI 工具 + 文档。如果需要跑本地模型（如 Ollama 本地部署），建议 32GB 内存 + 独立显卡。</li>
+              <li><strong>手机也可以：</strong>基础 AI 工具使用手机端 APP 足够（ChatGPT、Kimi、豆包），但 Python 学习和项目实战需要电脑。</li>
+            </ul>
+            <p><strong>月度预算（0-150 元/月）：</strong></p>
+            <table class="mini-table">
+              <thead>
+                <tr><th>项目</th><th>免费方案</th><th>付费方案（推荐）</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>AI 对话工具</td>
+                  <td>ChatGPT 免费版 / Kimi / 豆包 / 通义千问</td>
+                  <td>ChatGPT Plus（≈140 元/月）或 Claude Pro（≈140 元/月）</td>
+                </tr>
+                <tr>
+                  <td>AIGC 工具</td>
+                  <td>Stable Diffusion WebUI（本地免费）</td>
+                  <td>Midjourney 基础版（≈80 元/月）</td>
+                </tr>
+                <tr>
+                  <td>学习资源</td>
+                  <td>Coursera 免费旁听 / YouTube / B 站</td>
+                  <td>0 元（免费资源足够入门）</td>
+                </tr>
+                <tr>
+                  <td>编程环境</td>
+                  <td>Google Colab（免费 GPU）/ VS Code（免费）</td>
+                  <td>GitHub Copilot（≈70 元/月，学生免费）</td>
+                </tr>
+                <tr>
+                  <td>AI 工作流平台</td>
+                  <td>Coze / Dify 免费版</td>
+                  <td>Coze Pro（≈50 元/月）</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="margin-top:10px"><span class="highlight">省钱建议</span> 非技术背景入门阶段，0 元预算完全够用。前 3 个月用免费方案，确定有持续需求后再考虑付费。学生身份 GitHub Copilot、ChatGPT Edu 等可能有额外优惠。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <!-- ==================== TAB 2: 面试攻略 ==================== -->
