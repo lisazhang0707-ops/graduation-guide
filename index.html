@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毕业生求职指南</title>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --surface-hover: #f5f0eb;
+    --text: #2d2a26;
+    --text-secondary: #5c5650;
+    --text-muted: #8a837c;
+    --border: #e0d9d1;
+    --accent: #e8784a;
+    --accent-blue: #4a90d9;
+    --accent-purple: #7c5ce0;
+    --accent-light: #fef0ea;
+    --gradient-start: #e8784a;
+    --gradient-mid: #c560a8;
+    --gradient-end: #4a6fd9;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --radius: 10px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  body.dark {
+    --bg: #1a1917;
+    --surface: #242321;
+    --surface-hover: #2e2c29;
+    --text: #e8e4df;
+    --text-secondary: #b5b0a8;
+    --text-muted: #78736c;
+    --border: #3a3732;
+    --accent-light: #2e241e;
+    --shadow: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    transition: background var(--transition), color var(--transition);
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+    color: #fff;
+    padding: 48px 24px 36px;
+    text-align: center;
+    position: relative;
+  }
+  .header h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .header p {
+    font-size: 1.05rem;
+    opacity: 0.9;
+  }
+  .theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background var(--transition);
+    backdrop-filter: blur(4px);
+  }
+  .theme-toggle:hover { background: rgba(255,255,255,0.28); }
+
+  /* Tabs */
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: var(--shadow);
+    padding: 0 16px;
+  }
+  .tab-btn {
+    padding: 16px 28px;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    position: relative;
+    transition: color var(--transition);
+    white-space: nowrap;
+  }
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 3px 3px 0 0;
+    transform: scaleX(0);
+    transition: transform var(--transition);
+  }
+  .tab-btn.active {
+    color: var(--accent);
+  }
+  .tab-btn.active::after {
+    transform: scaleX(1);
+  }
+  .tab-btn:hover { color: var(--accent); }
+
+  /* Content */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; animation: fadeIn 0.35s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Section title */
+  .section-intro {
+    margin-bottom: 24px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, var(--accent-light), transparent);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  /* Accordion */
+  .accordion { display: flex; flex-direction: column; gap: 12px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow var(--transition), border-color var(--transition);
+  }
+  .card:hover { box-shadow: var(--shadow-md); }
+
+  .card-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.02rem;
+    font-weight: 650;
+    color: var(--text);
+    text-align: left;
+    gap: 12px;
+    transition: background var(--transition);
+  }
+  .card-header:hover { background: var(--surface-hover); }
+  .card-header:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+  .card-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+  .card-icon.c1 { background: #fef0ea; color: #e8784a; }
+  .card-icon.c2 { background: #eaf2fd; color: #4a90d9; }
+  .card-icon.c3 { background: #f0eafd; color: #7c5ce0; }
+  body.dark .card-icon.c1 { background: #3a2218; }
+  body.dark .card-icon.c2 { background: #1a2a3a; }
+  body.dark .card-icon.c3 { background: #241a3a; }
+
+  .card-title { flex: 1; }
+
+  .card-arrow {
+    flex-shrink: 0;
+    transition: transform var(--transition);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+  .card.open .card-arrow { transform: rotate(180deg); }
+
+  .card-body-wrap {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card-body {
+    padding: 0 22px 20px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    border-top: 1px solid var(--border);
+    margin: 0 22px;
+  }
+  .card-body ul { padding-left: 20px; margin: 8px 0; }
+  .card-body li { margin-bottom: 6px; }
+  .card-body strong { color: var(--text); }
+  .card-body .highlight {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .card-body .tag {
+    display: inline-block;
+    background: var(--surface-hover);
+    color: var(--text-secondary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    margin: 2px 4px 2px 0;
+  }
+
+  /* Table inside cards */
+  .mini-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 0.9rem;
+  }
+  .mini-table th, .mini-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .mini-table th {
+    background: var(--surface-hover);
+    font-weight: 650;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .mini-table td { color: var(--text-secondary); }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: var(--border);
+    border-radius: 1px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 7px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--surface);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  /* Print */
+  @media print {
+    .theme-toggle, .tab-nav { display: none; }
+    .header { background: none !important; color: #000; padding: 16px 0; }
+    .header h1 { color: #000; }
+    .card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    .card-body-wrap { max-height: none !important; }
+    .card-arrow { display: none; }
+    .card-header { cursor: default; pointer-events: none; }
+    .container { max-width: 100%; padding: 0; }
+    body { background: #fff; color: #000; font-size: 11pt; }
+    .tab-content { display: block !important; margin-bottom: 24px; }
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.6rem; }
+    .tab-btn { padding: 14px 16px; font-size: 0.9rem; }
+    .card-header { padding: 14px 16px; font-size: 0.95rem; }
+    .card-body { padding: 0 16px 16px; margin: 0 16px; }
+    .container { padding: 20px 12px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>毕业生求职指南</h1>
+  <p>从投简历到入职，每一步都走对</p>
+  <button class="theme-toggle" id="themeToggle" aria-label="切换暗色/亮色模式">🌙 暗色模式</button>
+</header>
+
+<nav class="tab-nav" role="tablist">
+  <button class="tab-btn active" role="tab" data-tab="tab-jobsearch">找工作攻略</button>
+  <button class="tab-btn" role="tab" data-tab="tab-interview">面试攻略</button>
+  <button class="tab-btn" role="tab" data-tab="tab-onboard">入职准备</button>
+</nav>
+
+<div class="container">
+
+  <!-- ==================== TAB 1: 找工作攻略 ==================== -->
+  <section class="tab-content active" id="tab-jobsearch">
+    <div class="section-intro">
+      找工作不是「海投等运气」，而是信息差 + 策略的游戏。下面 5 个板块帮你系统性地拿下 offer。
+    </div>
+    <div class="accordion">
+
+      <!-- Card 1: 主流招聘平台分析 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c1">🔍</span>
+          <span class="card-title">主流招聘平台分析</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>不同平台有不同「主场」，选对平台投递效率翻倍：</p>
+            <table class="mini-table">
+              <thead>
+                <tr><th>平台</th><th>适合岗位</th><th>特点与技巧</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><a href="https://www.zhipin.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Boss直聘 ↗</a></strong></td>
+                  <td>互联网、创业公司、中小企业</td>
+                  <td>直接和 HR / 老板聊，回复快。技巧：完善在线简历，工作日 9-11 点打招呼回复率最高，开场白不要用默认模板，第一句话就要点出你和岗位的匹配点。</td>
+                </tr>
+                <tr>
+                  <td><strong><a href="https://www.zhaopin.com" target="_blank" rel="noopener" style="color:var(--accent-blue);text-decoration:none;">智联招聘 ↗</a></strong></td>
+                  <td>传统行业、国企、大型民企</td>
+                  <td>老牌平台，企业覆盖面广。技巧：设置「职位订阅」接收新岗位推送，简历完整度保持在 90% 以上会获得更多曝光。</td>
+                </tr>
+                <tr>
+                  <td><strong><a href="https://www.51job.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">前程无忧 ↗</a></strong></td>
+                  <td>外企、制造业、快消</td>
+                  <td>外企岗位较多，校园招聘板块成熟。技巧：关注「校园招聘」专区，利用「谁看过我」反查潜在雇主。</td>
+                </tr>
+                <tr>
+                  <td><strong><a href="https://www.liepin.com" target="_blank" rel="noopener" style="color:var(--accent-purple);text-decoration:none;">猎聘 ↗</a></strong></td>
+                  <td>中高端岗位、3 年以上经验</td>
+                  <td>猎头主动联系居多。应届生适合：实习经历丰富、有项目作品集、目标岗位明确的同学。技巧：让猎头帮你推，而不是自己海投。</td>
+                </tr>
+                <tr>
+                  <td><strong><a href="https://www.linkedin.com" target="_blank" rel="noopener" style="color:var(--accent-blue);text-decoration:none;">LinkedIn ↗</a></strong></td>
+                  <td>外企、出海岗位、技术岗</td>
+                  <td>国内岗位量较少但质量普遍偏高。技巧：加目标公司的在职员工、校友，先建立弱关系再求内推。Profile 用中英双语。</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="margin-top:10px"><strong>组合策略：</strong>Boss 直聘作主战场 + 1-2 个垂直平台辅助 + LinkedIn 做长期人脉积累。不要同时在 5 个平台上海投，精力分散反而效率低。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: 简历关键词优化 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c2">📝</span>
+          <span class="card-title">简历关键词优化：让 ATS 和 HR 都找到你</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>大公司普遍使用 <strong>ATS（Applicant Tracking System）</strong> 初筛简历，关键词匹配度不够直接石沉大海。</p>
+            <ul>
+              <li><strong>硬技能词前置：</strong>把 JD 里出现的具体技能写在简历前 1/3 处（如 Python、SQL、Figma、项目管理），不要只写在最后的「技能列表」里。</li>
+              <li><strong>动词量化：</strong>不说「负责社群运营」，说「运营 3 个 500 人社群，30 天内转化率提升 22%」。</li>
+              <li><strong>JD 关键词映射：</strong>拿到 JD 后圈出所有硬技能和软技能高频词，确保你的简历中至少覆盖 70%。</li>
+              <li><strong>避免图片 / PDF 文字不可选：</strong>ATS 无法解析图片中的文字。导出 PDF 时确保文字可选（用 Word / LaTeX 生成，不要用 PS 导出）。</li>
+              <li><strong>一页原则：</strong>应届生简历严格控制在 1 页 A4 纸，超过 1 页的部分 HR 几乎不看。</li>
+            </ul>
+            <p><span class="highlight">注意</span> 不要为了关键词堆砌假技能，面试中会被轻易看穿。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: 公司背调 checklist -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c3">🕵️</span>
+          <span class="card-title">公司背调 Checklist：面试前就把坑排掉</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>投简历之前花 10 分钟背调，能帮你筛掉 30% 的坑公司：</p>
+            <ul>
+              <li><strong>工商信息：</strong><a href="https://www.tianyancha.com" target="_blank" rel="noopener">天眼查 ↗</a> / <a href="https://www.qichacha.com" target="_blank" rel="noopener">企查查 ↗</a> 查经营状态、社保缴纳人数（少于 15 人的公司要谨慎）、劳动仲裁记录、法人变更频率。</li>
+              <li><strong>口碑平台：</strong>脉脉（搜公司名 + 吐槽 / 避雷）、看准网、知乎（搜「在 XX 公司工作是怎样一番体验」）、小红书（搜公司名 + 校招）。</li>
+              <li><strong>融资情况：</strong>IT 桔子、企查查投融资板块 — A 轮前公司重点看融资金额和投资方背景，判断是否能活过 18 个月。</li>
+              <li><strong>加班文化线索：</strong>BOSS 直聘看看 HR 的活跃时间，如果经常晚上 10 点还在回消息，加班文化大概跑不了。</li>
+              <li><strong>离职率信号：</strong>脉脉上同一公司近 3 个月离职帖超过 5 条；岗位常年挂且描述不变 — 可能是流动性极高的坑位。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: 筛选岗位技巧 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c1">🎯</span>
+          <span class="card-title">筛选岗位技巧：看穿 JD 的弦外之音</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <ul>
+              <li><strong>看 JD 不看标题：</strong>「管培生」可能实际是销售轮岗；「运营总监」可能是一个人干三个人的活。重点看工作内容的具体描述。</li>
+              <li><strong>识别画大饼信号：</strong>
+                <br><span class="tag">弹性工作 = 随时加班</span>
+                <span class="tag">有挑战性 = 没人带</span>
+                <span class="tag">扁平化管理 = 没晋升通道</span>
+                <span class="tag">薪资上不封顶 = 底薪很低</span>
+                <span class="tag">创业氛围 = 福利少活多</span>
+              </li>
+              <li><strong>判断真实薪资范围：</strong>JD 写「8-15K」，大概率是 8-10K。把上限乘 0.7 得到的数字更接近真实 offer。</li>
+              <li><strong>看岗位发布时间：</strong>发布超过 2 个月且还在刷新的岗位，可能是常年招人的流动性坑位，或公司在收简历建人才库并不真招人。</li>
+              <li><strong>看公司规模匹配度：</strong>应届生第一份工作优先选中大型公司（100 人以上），有成熟的培训体系和 mentor 机制。小公司适合有明确方向、自学能力强的人。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: 投递策略 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c2">📬</span>
+          <span class="card-title">投递策略：海投 vs 精投，以及最佳时间窗口</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>海投和精投不是二选一，而是分阶段使用：</strong></p>
+            <ul>
+              <li><strong>第一阶段（前 2 周）— 精投：</strong>每天投 3-5 家，每家针对 JD 微调简历和招呼语。目标是拿到第一批面试练手。</li>
+              <li><strong>第二阶段（第 3-4 周）— 精投 + 适度海投：</strong>精投不变，每天额外海投 10-15 家不需要改简历的岗位，用 BOSS 直聘的一键投递。</li>
+              <li><strong>第三阶段（第 5 周起）— 评估调整：</strong>如果前两阶段面试转化率低于 10%，说明简历或方向有问题，停下来复盘调整，不要继续盲目投。</li>
+            </ul>
+            <p><strong>投递时间窗口：</strong></p>
+            <ul>
+              <li>周二到周四的上午 9:00-11:00 是黄金窗口（HR 刚上班会集中处理消息）</li>
+              <li>周一上午 HR 通常开会，周五下午心思已经飘到周末，避开这两个时段</li>
+              <li>不要在深夜/凌晨投递，你的消息会沉在最底下</li>
+            </ul>
+            <p><strong>跟进节奏：</strong>投递后 2-3 个工作日未回复，可以追一条简短消息（限 1 次）。如果已读不回，大概率不匹配，不要反复追问。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AI 每日推岗板块 -->
+    <div class="section-intro" style="margin-top:32px;border-left-color:var(--accent-purple);background:linear-gradient(135deg,#f0eafd,transparent);">
+      <strong>🤖 AI 每日推岗</strong> — 根据你的求职方向，系统每天自动搜索岗位并汇总到飞书多维表格，一键查看、标记状态。
+    </div>
+    <div class="accordion">
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c3">📊</span>
+          <span class="card-title">招聘岗位汇总表（AI 每日更新）</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>每天 8:00 自动推送最新岗位，覆盖：</p>
+            <ul>
+              <li><strong>方向：</strong>人工智能（非技术岗）、市场营销、销售管理</li>
+              <li><strong>城市：</strong>上海、杭州、嘉兴</li>
+              <li><strong>来源：</strong>Boss直聘、智联招聘、前程无忧、猎聘、LinkedIn</li>
+            </ul>
+            <p style="margin:16px 0;">
+              <a href="https://dcnj6qu6qn40.feishu.cn/base/OsohbD1QNaAoSLsprnzcItpgnOc?table=tblzAXeSKlIhBvid&view=vewd7LC4P9" target="_blank" rel="noopener" style="display:inline-block;padding:12px 28px;background:linear-gradient(135deg,var(--accent-purple),var(--accent));color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:1.05rem;">
+                📋 打开招聘岗位汇总表 →
+              </a>
+            </p>
+            <p style="font-size:0.88rem;color:var(--text-muted);">电脑关机错过推送也没关系，开机后 9:00 会自动补跑。你只需在表格里标记「已投」「不考虑」「面试中」即可。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 2: 面试攻略 ==================== -->
+  <section class="tab-content" id="tab-interview">
+    <div class="section-intro">
+      面试的核心能力只有两个：<strong>逻辑清晰地展示匹配度</strong>和<strong>有分寸地表达思考深度</strong>。下面 7 个板块覆盖面试全流程。
+    </div>
+    <div class="accordion">
+
+      <!-- Card 1: 面试前准备 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c1">📋</span>
+          <span class="card-title">面试前准备：三层面调研 + 常见问题清单</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>三层公司调研（面试前必须搞清楚）：</strong></p>
+            <ul>
+              <li><strong>业务层：</strong>公司做什么业务？盈利模式是什么？主要竞品是谁？最近半年有什么大新闻？（看官网 + 36Kr / 虎嗅 + 企查查）</li>
+              <li><strong>产品层：</strong>亲自使用公司产品至少 30 分钟，列出 3 个优点和 2 个你觉得可以改进的地方。面试中问到「你对我们产品的看法」时，这直接决定你的印象分。</li>
+              <li><strong>团队层：</strong>面试官是谁？（LinkedIn / 脉脉搜名字）团队规模多大？团队的技术栈或业务方向？（从 JD 和面试官背景反推）</li>
+            </ul>
+            <p><strong>常见问题准备清单（必练 8 题）：</strong></p>
+            <ol>
+              <li>自我介绍（1 分钟版和 2 分钟版各准备一份）</li>
+              <li>为什么选择我们公司 / 这个岗位？</li>
+              <li>你最大的优点和缺点是什么？</li>
+              <li>介绍一个你做过的项目（按 STAR 法则准备）</li>
+              <li>遇到的最大挑战是什么？怎么解决的？</li>
+              <li>你对薪资的期望是多少？</li>
+              <li>你未来 3-5 年的职业规划？</li>
+              <li>你有什么问题要问我们？</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: STAR 法则 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c2">⭐</span>
+          <span class="card-title">STAR 法则：行为面试的回答框架</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>STAR = <strong>S</strong>ituation（情境）+ <strong>T</strong>ask（任务）+ <strong>A</strong>ction（行动）+ <strong>R</strong>esult（结果）。这是应对行为面试题的标准框架。</p>
+            <p><strong>使用方法：</strong></p>
+            <ul>
+              <li><strong>S — 用 1 句话说背景：</strong>「大三下学期，我所在的校园创业团队面临用户活跃度持续下降的问题，月活从 3000 跌到 800。」</li>
+              <li><strong>T — 明确你的任务：</strong>「我的任务是作为运营负责人，在一个月内把月活拉回到 2000 以上。」</li>
+              <li><strong>A — 详细说你的行动（60% 篇幅）：</strong>重点说<strong>你</strong>做了什么，不要用「我们」代替。说出具体的决策逻辑而不是流水账。</li>
+              <li><strong>R — 量化结果：</strong>「最终 28 天后月活恢复到 2300，比目标超出 15%。同期用户留存率从 18% 提升到 34%。」如果没有量化结果，说学到了什么。</li>
+            </ul>
+            <p><strong>示例（完整 STAR 回答，约 90 秒）：</strong></p>
+            <p style="background:var(--surface-hover);padding:12px;border-radius:6px;font-size:0.9rem;">
+              <strong>S:</strong> 我在大四实习时，团队负责的一个客户项目临近交付，但客户突然要求增加一个我们之前没评估过的数据导出功能，工期只剩两周。<br>
+              <strong>T:</strong> 作为前端开发，我需要在一周内交付这个功能，同时不能影响主流程的稳定性。<br>
+              <strong>A:</strong> 我先花半天梳理了现有数据结构和导出需求，发现 80% 的需求可以用已有的查询接口实现。我主动和后端同事对齐了接口方案，用了一天做方案评审确认边界。然后用三天完成了功能开发和自测，预留两天给 QA 测试和修复边界 case。<br>
+              <strong>R:</strong> 最终提前一天交付，客户验收一次通过。项目经理后来把这个功能的预估工时写进了后续报价模板，避免了类似估算偏差。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: 线上面试 checklist -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c3">💻</span>
+          <span class="card-title">线上面试 Checklist：别让设备和环境拖后腿</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>线上面试中，<strong>画面和声音质量直接影响面试官的潜意识判断</strong>。以下是逐项检查清单：</p>
+            <ul>
+              <li><strong>设备：</strong>提前 1 天测试摄像头和麦克风；笔记本充满电并插电面试；关掉所有可能弹窗的软件（微信、邮件客户端）；手机开勿扰模式放远处。</li>
+              <li><strong>网络：</strong>有线优于 Wi-Fi；Wi-Fi 下确保离路由器近；准备手机热点作备份。面试前用 Speedtest 测速，上传带宽 > 2Mbps 即可。</li>
+              <li><strong>画面：</strong>摄像头与眼睛平齐（垫几本书）；人脸处于画面中央偏上 1/3；正面有柔和光源（台灯对着脸，不要背对窗户）；背景干净整洁，或用虚拟背景（纯色最好，别用模糊）。</li>
+              <li><strong>声音：</strong>用耳机不要外放（避免回声）；找个安静封闭的空间；提前告诉室友/家人面试时间。</li>
+              <li><strong>着装：</strong>上半身穿带领子的纯色衣服（深蓝、白色、灰色最安全）；不要穿条纹或格子（摄像头下会产生摩尔纹）；下半身也穿好，以防需要站起来。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: 线下面试 checklist -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c1">🏢</span>
+          <span class="card-title">线下面试 Checklist：从出门到结束的全流程</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <ul>
+              <li><strong>材料：</strong>3 份纸质简历 + 作品集（如有） + 身份证 + 笔记本和笔。即使公司有电子版，带纸质简历是态度分。</li>
+              <li><strong>路线：</strong>提前 1 天查路线，面试当天预留 30 分钟缓冲。到达后提前 10 分钟进公司，不要提前太久（30 分钟以上会让接待的人有压力）。</li>
+              <li><strong>仪表：</strong>提前一天准备好衣服（商务休闲即可，不需要正装除非是金融/咨询行业）；鞋子干净；指甲整洁；香水不要过浓。</li>
+              <li><strong>话术准备：</strong>「请介绍一下自己」这句话要在路上默念 3 遍，确保第一分钟流畅自信。开场的前 60 秒决定 50% 的印象分。</li>
+              <li><strong>观察公司：</strong>等面试时观察办公环境 — 工位拥挤程度、同事交流氛围、员工表情。这些都是入职后你每天面对的真实状态。</li>
+              <li><strong>面试结束：</strong>主动加 HR 微信（如果聊得好）；问清楚后续流程和时间节点；离开时对前台和面试官都说声谢谢。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: 技术面试准备框架 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c2">🛠️</span>
+          <span class="card-title">技术面试准备框架（通用版）</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>技术面试不只是刷题，而是三个维度的评估：</p>
+            <ul>
+              <li><strong>基础能力（40%）：</strong>
+                <br>— 数据结构与算法：数组/链表/树/哈希表/栈队列的常见操作和复杂度分析
+                <br>— 刷题策略：按专题刷而非按编号刷（如这周只做二叉树），每个专题做 15-20 道后总结模板
+                <br>— 平台推荐：LeetCode（Hot 100 + 剑指 Offer）、牛客网（看面经）
+              </li>
+              <li><strong>项目深挖（40%）：</strong>
+                <br>— 准备 2 个核心项目的「技术故事线」：为什么选这个技术方案？踩了什么坑？怎么解决的？如果重新做会怎么改进？
+                <br>— 画一张项目的技术架构图，能在白板上边画边讲
+                <br>— 准备项目中用到的核心技术的底层原理（如为什么用 Redis 而不是直接查数据库？Redis 的数据结构底层是什么？）
+              </li>
+              <li><strong>系统设计（20%，应届生要求较低但有加分）：</strong>
+                <br>— 了解基本概念：负载均衡、缓存、数据库读写分离、消息队列的使用场景
+                <br>— 能说清「设计一个短链接系统」或「设计一个简单的 feed 流」的大致思路
+                <br>— 推荐资源：《System Design Interview》前 5 章
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: 反问环节 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c3">💡</span>
+          <span class="card-title">反问环节：用问题展示你的思考深度</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>「你有什么问题要问我们吗？」 — 这不是客套话，是反客为主的机会。好的反问能让面试官觉得<strong>「这个人思考比较深」</strong>。</p>
+            <p><strong>高质量反问（选 2-3 个）：</strong></p>
+            <ul>
+              <li>「这个岗位的日常工作，最典型的一天是什么样的？」— 比「岗位职责是什么」具体得多，也帮你判断你是否喜欢这份工作。</li>
+              <li>「团队目前遇到的最大技术挑战或业务难题是什么？」— 展示你关心实际问题而非光鲜表面。</li>
+              <li>「公司对这个岗位的新人，前三个月的期望是什么？」— 说明你关心的是交付价值而非混过试用期。</li>
+              <li>「团队的分工和协作模式是怎样的？日常会用到哪些工具？」— 务实但信息量很大。</li>
+              <li>「我面试的这个岗位，是因为业务扩张新增的，还是接替离职的人？」— 帮你判断岗位稳定性。新增岗位代表业务向上，接替岗位需要追问前任为什么离开。</li>
+            </ul>
+            <p><strong>不要问的问题：</strong>能百度到的（公司有多少人）、薪资福利（等 HR 面再谈）、「我今天的表现怎么样」（让面试官尴尬）。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7: 面试后 follow-up -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c1">✉️</span>
+          <span class="card-title">面试后 Follow-up：感谢信 + 复盘 + 状态跟进</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>感谢信（面试后 4 小时内发出）：</strong></p>
+            <ul>
+              <li>发邮件或 BOSS 消息，简短即可（100 字以内）。</li>
+              <li>模板：感谢时间 + 提到面试中一个具体聊到的点 + 重申你对岗位的兴趣 + 表达期待。</li>
+              <li>如果有多个面试官，可以给每个人发，但内容要略有不同（各自聊的话题不同）。</li>
+            </ul>
+            <p><strong>复盘（面试当天做，不要超过第二天）：</strong></p>
+            <ul>
+              <li>记录被问到的问题和你当时的回答，标注哪些回答的不好。</li>
+              <li>整理面试中暴露的知识盲区，立即补充。</li>
+              <li>给这次面试的表现打分（1-10 分），分析扣分项和下次可以改进的点。</li>
+            </ul>
+            <p><strong>状态跟进：</strong></p>
+            <ul>
+              <li>如果面试时 HR 说了回复时间，到了时间没消息可以礼貌追问一次。</li>
+              <li>如果没给时间，等 5 个工作日后追问一次。超过 7 天没回复，大概率是凉了或公司在走流程（内部流程可能很慢）。</li>
+              <li>追问话术：「您好，我是 X 月 X 日面试 XX 岗位的 XX，想了解一下目前的进展。谢谢！」</li>
+              <li>不要反复追问，1-2 次即可。继续面下一家，不要干等。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== TAB 3: 入职准备 ==================== -->
+  <section class="tab-content" id="tab-onboard">
+    <div class="section-intro">
+      拿到 Offer 只是起点。如何比较 Offer、如何度过前三个月，决定了你在这家公司的起点高度。
+    </div>
+    <div class="accordion">
+
+      <!-- Card 1: OFFER 对比矩阵 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c1">⚖️</span>
+          <span class="card-title">Offer 对比矩阵：别只看月薪</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>用下面的维度给每个 Offer 打分（1-5 分），加权后对比：</p>
+            <table class="mini-table">
+              <thead>
+                <tr><th>维度</th><th>权重</th><th>怎么看</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>税前月薪</td><td>20%</td><td>× 12 个月 + 年终（问清楚是保证还是浮动）</td></tr>
+                <tr><td>五险一金</td><td>15%</td><td>公积金比例差异很大（5% vs 12% 一年差几万）。问公积金基数和比例</td></tr>
+                <tr><td>成长空间</td><td>25%</td><td>直属 leader 愿不愿意带人？（面试中能感受到）岗位技能是否可迁移？公司品牌对 3 年后跳槽的背书价值多大？</td></tr>
+                <tr><td>期权/股票</td><td>10%</td><td>未上市公司期权 = 彩票，按 0 估值入账。上市公司 RSU 按市价 ×0.7 折算。问清楚 vesting schedule</td></tr>
+                <tr><td>通勤与生活成本</td><td>10%</td><td>一线城市月薪高 2000 但房租高 3000，实际可支配收入更低。算税后到手 + 扣除房租和通勤</td></tr>
+                <tr><td>工作强度</td><td>10%</td><td>问清楚上下班时间、是否双休、加班频率。时薪比月薪更能反映性价比</td></tr>
+                <tr><td>团队氛围</td><td>10%</td><td>面试中观察：面试官是否尊重你？同事之间怎么互动的？这是你每天要待 8 小时的环境</td></tr>
+              </tbody>
+            </table>
+            <p style="margin-top:10px"><span class="highlight">核心原则</span> 应届生前 3 年，成长空间 > 月薪差距。月薪差 2000 块一年也就 2.4 万，但一个好 leader 带给你的能力提升，3 年后可能值月薪差 2 万。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: 入职材料清单 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c2">📁</span>
+          <span class="card-title">入职材料清单：一个都不能少</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>收到 Offer 后立刻逐项准备，不要拖到入职前一天：</p>
+            <ul>
+              <li><strong>身份证原件 + 复印件：</strong>3-5 份，正反面印在同一面。</li>
+              <li><strong>学历学位证书：</strong>原件 + 复印件。还没拿到毕业证的同学，准备学信网学籍在线验证报告。</li>
+              <li><strong>银行卡：</strong>工资卡。公司可能指定银行（通常是四大行），没有的话提前办。</li>
+              <li><strong>体检报告：</strong>部分公司要求入职体检，问清楚是否指定医院、是否报销。三甲医院体检报告通常 3-5 个工作日可取。</li>
+              <li><strong>离职证明：</strong>有实习/工作经历的需要前公司开具，加盖公章。</li>
+              <li><strong>一寸/二寸照片：</strong>准备 5 张以上白底证件照，电子版也存手机里。</li>
+              <li><strong>社保/公积金相关：</strong>如果有过工作经历，记下之前的社保电脑号和公积金账号。</li>
+              <li><strong>Offer 回签：</strong>把签好字的 Offer 邮件/pdf 保存好，这是你的权益凭证。</li>
+            </ul>
+            <p><span class="highlight">提示</span> 把所有材料扫描一份电子版存在手机和云盘里，防止丢失。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: 入职前 30 天计划 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c3">🗓️</span>
+          <span class="card-title">入职前 30 天倒计时计划</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <div class="timeline">
+              <div class="timeline-item">
+                <strong>入职前 2 周</strong>
+                <ul>
+                  <li>系统学习行业基础知识（看行业报告、竞品、公司官网上的产品文档）</li>
+                  <li>梳理你岗位所需的工具链，不会的提前学起来</li>
+                  <li>准备好入职材料，缺什么补什么</li>
+                </ul>
+              </div>
+              <div class="timeline-item">
+                <strong>入职前 1 周</strong>
+                <ul>
+                  <li>调整作息，按上班节奏生活一周（尤其假期躺平太久的同学）</li>
+                  <li>准备 3-5 套干净、得体、不费脑子的通勤穿搭</li>
+                  <li>查好通勤路线，最好在上班高峰时段提前走一遍</li>
+                  <li>和 HR 确认：入职时间、地点、对接人、第一天需要带什么</li>
+                </ul>
+              </div>
+              <div class="timeline-item">
+                <strong>入职前 3 天</strong>
+                <ul>
+                  <li>所有材料放进一个文件袋，放在门口显眼位置</li>
+                  <li>准备一个简短的自我介绍（1 分钟版，团队破冰用）</li>
+                  <li>列出你第一周想搞清楚的问题清单（业务模式、团队分工、工具流程等）</li>
+                </ul>
+              </div>
+              <div class="timeline-item">
+                <strong>入职前 1 天</strong>
+                <ul>
+                  <li>定好闹钟，预留比平时多 20 分钟的缓冲</li>
+                  <li>选好第一天的衣服，熨平整</li>
+                  <li>早睡。第一印象从你第二天走进公司时的精神状态开始</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: 第一周生存指南 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c1">🧭</span>
+          <span class="card-title">第一周生存指南：快速融入不被边缘化</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>第一周的目标不是做出成绩，而是建立信任和了解规则。</strong></p>
+            <ul>
+              <li><strong>D1-Day2：被动观察期</strong>
+                <br>— 认真参加每一场 onboarding 培训，记笔记（别人看到你记笔记会觉得这个人靠谱）
+                <br>— 认识你的 mentor / 直属 leader，弄清楚你向谁汇报、和谁协作
+                <br>— 熟悉工具：权限开通、代码仓库、文档系统、沟通工具（Slack/飞书/钉钉）、项目管理工具
+              </li>
+              <li><strong>D3-Day5：主动融入期</strong>
+                <br>— 约每个协作同事吃午饭或喝杯咖啡（15 分钟 informal chat），了解对方在做什么、你以后怎么配合
+                <br>— 找一个可以快速完成的微小任务（修一个简单的 bug、更新一份文档），主动向 leader 要
+                <br>— 参加团队例会时多听少说，但至少准备一个问题或一个观点，让别人知道你在思考
+              </li>
+              <li><strong>第一周禁忌：</strong>
+                <br>— 不要急于提改进建议（「这里为什么这么搞？应该那样做」— 你看到的「问题」可能有你不知道的历史原因）
+                <br>— 不要过早站队或参与办公室政治讨论
+                <br>— 不要迟到早退，哪怕别人都弹性工作
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: 第一个月目标设定 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c2">🎯</span>
+          <span class="card-title">第一个月目标设定：30-60-90 天计划（简化版）</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p>入职第一周结束时，主动和 leader 对齐以下计划：</p>
+            <table class="mini-table">
+              <thead>
+                <tr><th>阶段</th><th>核心目标</th><th>具体行动</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>前 30 天</strong></td>
+                  <td>学习与融入</td>
+                  <td>熟悉业务流程和工具链；能独立完成小任务；和团队每个人都建立了基本工作关系；知道有事找谁</td>
+                </tr>
+                <tr>
+                  <td><strong>30-60 天</strong></td>
+                  <td>独立贡献</td>
+                  <td>开始独立负责一个模块或小项目；对业务流程有自己的理解，能提出经过思考的建议；在团队内建立可信赖的口碑（说到做到、有问题主动沟通）</td>
+                </tr>
+                <tr>
+                  <td><strong>60-90 天</strong></td>
+                  <td>建立影响力</td>
+                  <td>在至少一个方面做到比团队平均水平更好（如某个模块的 go-to person）；能帮助新来的同事融入；和 leader 对齐试用期目标并确保达成</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="margin-top:10px">把这个计划写下来，在 1:1 时和 leader 过一遍。leader 看到你主动规划自己的成长，加分巨大。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: 新人避坑指南 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c3">⚠️</span>
+          <span class="card-title">新人避坑指南：前 3 个月最常见的 6 个错误</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <ol>
+              <li><strong>不懂不主动问：</strong>怕显得蠢所以自己闷头搞，搞了 3 天方向全错。事实上新人问问题不会减分，但逾期不交付出问题一定减分。卡住超过 1 小时就主动求助。</li>
+              <li><strong>承诺了做不到的任务：</strong>「没问题，周五给你」— 结果周五根本完不成。接到任务先评估，不确定就说「我先花半天了解一下，下午给你排期预估」。</li>
+              <li><strong>忽视文档和流程：</strong>不看 wiki、不看 onboarding doc、不读代码规范就开始写，出来的东西完全不符合团队标准，还得重做。入职第一件事：把所有内部文档通读一遍。</li>
+              <li><strong>在群里乱问全局性问题：</strong>在 200 人的大群里 @all 问「这个接口怎么调？」— 应该先查文档，找不到再私聊问具体的人。</li>
+              <li><strong>过早站队或抱怨：</strong>「我们组就是 xxx 不好」「隔壁组的 xx 真奇葩」— 你不知道谁和谁关系好，新人的中立立场是你前半年最大的保护色。</li>
+              <li><strong>忽视了和 leader 的 1:1：</strong>前 3 个月每周一次和直属 leader 的 1:1，是你在组织内最重要的 30 分钟。准备一个 agenda：这周做了什么、遇到什么困难、下周计划是什么、需要什么支持。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <p>毕业生求职指南 · 愿每一位毕业生都能找到心仪的工作</p>
+  <p style="margin-top:4px">本指南内容仅供参考，具体情况请结合个人实际判断</p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // --- Tab switching ---
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var tabContents = document.querySelectorAll('.tab-content');
+
+  tabBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var targetId = this.getAttribute('data-tab');
+      tabBtns.forEach(function(b) { b.classList.remove('active'); });
+      tabContents.forEach(function(c) { c.classList.remove('active'); });
+      this.classList.add('active');
+      var target = document.getElementById(targetId);
+      if (target) target.classList.add('active');
+    });
+  });
+
+  // --- Accordion ---
+  document.querySelectorAll('.card-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      var card = this.parentElement;
+      var bodyWrap = card.querySelector('.card-body-wrap');
+      var isOpen = card.classList.contains('open');
+
+      if (isOpen) {
+        card.classList.remove('open');
+        this.setAttribute('aria-expanded', 'false');
+        bodyWrap.style.maxHeight = '0';
+      } else {
+        card.classList.add('open');
+        this.setAttribute('aria-expanded', 'true');
+        bodyWrap.style.maxHeight = bodyWrap.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Recalculate max-height on resize for open cards
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      document.querySelectorAll('.card.open').forEach(function(card) {
+        var wrap = card.querySelector('.card-body-wrap');
+        wrap.style.maxHeight = wrap.scrollHeight + 'px';
+      });
+    }, 150);
+  });
+
+  // --- Dark / Light mode ---
+  var themeToggle = document.getElementById('themeToggle');
+  var body = document.body;
+
+  // Check saved preference
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+    themeToggle.textContent = '☀️ 亮色模式';
+  }
+
+  themeToggle.addEventListener('click', function() {
+    if (body.classList.contains('dark')) {
+      body.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      themeToggle.textContent = '🌙 暗色模式';
+    } else {
+      body.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      themeToggle.textContent = '☀️ 亮色模式';
+    }
+  });
+
+  // --- Print: expand all cards ---
+  var printStyleSheet = null;
+  window.addEventListener('beforeprint', function() {
+    document.querySelectorAll('.card').forEach(function(card) {
+      card.classList.add('open');
+      var wrap = card.querySelector('.card-body-wrap');
+      wrap.style.maxHeight = wrap.scrollHeight + 'px';
+    });
+  });
+
+  window.addEventListener('afterprint', function() {
+    // Restore closed state (but don't collapse cards that were manually opened)
+    // For simplicity, we leave cards open after print — user can manually close
+  });
+
+})();
+</script>
+
+</body>
+</html>
