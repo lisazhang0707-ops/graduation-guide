@@ -297,7 +297,6 @@
     box-shadow: 0 0 0 2px var(--accent);
   }
 
-  /* Footer */
   .footer {
     text-align: center;
     padding: 32px 20px;
@@ -306,6 +305,81 @@
     border-top: 1px solid var(--border);
   }
   .footer a { color: var(--accent); text-decoration: none; }
+
+  /* Progress bar */
+  .progress-bar-wrap {
+    display: none;
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .progress-bar-wrap.visible { display: block; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .progress-track {
+    height: 6px;
+    background: var(--surface-hover);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+  .card.done .card-header .card-title { opacity: 0.5; text-decoration: line-through; }
+  .card-checkbox {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    transition: all var(--transition);
+    background: transparent;
+    color: transparent;
+    margin-right: -4px;
+  }
+  .card.done .card-checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* Export PDF button */
+  .export-pdf-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .export-pdf-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+  }
+  @media print { .export-pdf-btn { display: none; } }
 
   /* Print */
   @media print {
@@ -342,9 +416,20 @@
   <button class="tab-btn active" role="tab" data-tab="tab-jobsearch">找工作攻略</button>
   <button class="tab-btn" role="tab" data-tab="tab-interview">面试攻略</button>
   <button class="tab-btn" role="tab" data-tab="tab-onboard">入职准备</button>
+  <button class="tab-btn" role="tab" data-tab="tab-more">更多攻略</button>
 </nav>
 
 <div class="container">
+  <!-- 学习进度条 -->
+  <div class="progress-bar-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span>学习进度</span>
+      <span id="progressText">0 / 0</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
 
   <!-- ==================== TAB 1: 找工作攻略 ==================== -->
   <section class="tab-content active" id="tab-jobsearch">
@@ -356,6 +441,7 @@
       <!-- Card 1: 主流招聘平台分析 -->
       <div class="card">
         <button class="card-header" aria-expanded="false">
+          <span class="card-checkbox" data-checkbox="true">✓</span>
           <span class="card-icon c1">🔍</span>
           <span class="card-title">主流招聘平台分析</span>
           <span class="card-arrow">▼</span>
@@ -528,6 +614,96 @@
     </div>
   </section>
 
+    <!-- 职场读书清单板块 -->
+    <div class="section-intro" style="margin-top:32px;border-left-color:var(--accent-blue);background:linear-gradient(135deg,#eaf2fd,transparent);">
+      <strong>📚 职场读书清单</strong> — 应届生必读的 5 本书，帮你建立职业思维框架
+    </div>
+    <div class="accordion">
+
+      <!-- 书1: 金字塔原理 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c2">📖</span>
+          <span class="card-title">《金字塔原理》— 芭芭拉·明托</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>核心思想：</strong>任何复杂观点都可以用「结论先行 + 分层支撑」的金字塔结构表达。这是麦肯锡最经典的沟通框架，也是职场写作和汇报的底层语言。</p>
+            <p><strong>三个核心原则：</strong></p>
+            <ul>
+              <li><strong>结论先行：</strong>先说结论，再说理由。职场中没人有耐心听你铺垫。「我们需要增加两个headcount（结论），因为Q3业务量增长了30%且现有团队已经满负荷（理由）」— 而不是反过来说。</li>
+              <li><strong>以上统下：</strong>上一层的结论必须是下一层观点的概括。每一层都是下一层的「摘要」，而不是跳脱的并列关系。</li>
+              <li><strong>MECE原则：</strong>Mutually Exclusive, Collectively Exhaustive — 同一层的观点要「相互独立，完全穷尽」。不重叠、不遗漏。</li>
+            </ul>
+            <p><strong>应届生怎么用：</strong></p>
+            <ul>
+              <li>写周报/邮件先用 1 句话概括，再分行展开</li>
+              <li>面试回答「介绍一个项目」时，先说结论再讲细节</li>
+              <li>写简历的 bullet point 时，每条都是「结果先行 + 过程补充」</li>
+            </ul>
+            <p><span class="highlight">一句话记忆</span> 老板只想知道结论，你的推理过程是备用的。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 书2: 高效能人士的七个习惯 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c3">📖</span>
+          <span class="card-title">《高效能人士的七个习惯》— 史蒂芬·柯维</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>核心思想：</strong>先做人再做事。七个习惯从依赖→独立→互赖递进，是个人效能和团队协作的系统框架。</p>
+            <p><strong>七个习惯速览：</strong></p>
+            <ul>
+              <li><strong>① 积极主动：</strong>你永远有选择。不要做「被动反应者」，要做「主动设计者」。碰到问题先说「我来想办法」而不是「这没办法」。</li>
+              <li><strong>② 以终为始：</strong>做任何事前先想清楚目标是啥。「如果这份实习3个月后我带走什么算成功」— 反过来倒推今天该做什么。</li>
+              <li><strong>③ 要事第一：</strong>把时间花在「重要但不紧急」的事上（自我提升、建立关系、长期规划），不要天天救火。</li>
+              <li><strong>④ 双赢思维：</strong>职场不是零和博弈。帮同事解决问题，同事以后也会帮你。长期看双赢比单赢收获得多。</li>
+              <li><strong>⑤ 知彼解己：</strong>先理解别人，再被理解。很多人急着表达自己而不会倾听。在沟通中先复述对方的意思再说自己的观点。</li>
+              <li><strong>⑥ 统合综效：</strong>1+1 > 2。不同观点碰撞往往能产生比各自独断更好的方案，关键是有开放心态。</li>
+              <li><strong>⑦ 不断更新：</strong>在身体、智力、社会/情感、精神四个维度持续投资自己。工作后最危险的事就是停止学习。</li>
+            </ul>
+            <p><strong>应届生最该先练哪三个：</strong>积极主动（面对未知不怂）、要事第一（不被碎片信息淹没）、知彼解己（面试和日常沟通的杀手锏）。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 书3-5: 推荐 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c1">📖</span>
+          <span class="card-title">《关键对话》/《非暴力沟通》/《深度工作》</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>③ 《关键对话》（科里·帕特森等）</strong></p>
+            <ul>
+              <li><strong>为什么读：</strong>职场中最难的不是做事，而是「把话说开」。怎么跟 leader 谈加薪、怎么跟同事说「这个 deadline 我做不到」、怎么在冲突中不被情绪裹挟。</li>
+              <li><strong>核心方法：</strong>营造安全感（让对方知道你的意图是好的）→ 陈述事实而不要贴标签→ 引导对方说出真实想法。学会区分「事实」和「你编的故事」。</li>
+              <li><strong>面试加分：</strong>回答冲突类问题时的底层思维来源。</li>
+            </ul>
+            <p><strong>④ 《非暴力沟通》（马歇尔·卢森堡）</strong></p>
+            <ul>
+              <li><strong>为什么读：</strong>职场中 80% 的矛盾来自「说了但没说清楚」。非暴力沟通四步法：观察→感受→需要→请求。</li>
+              <li><strong>例子：</strong>不说「你老是迟到」（指责），说「这周三次晨会你都在 9:05 之后到（观察），我担心团队配合效率受影响（感受），我希望我们能准时开始（需要），明天开始可以 9:00 准时在会议室吗（请求）。」</li>
+              <li><strong>应届生用：</strong>写邮件、提需求、给反馈时都按这个结构，瞬间拉开和同龄人的差距。</li>
+            </ul>
+            <p><strong>⑤ 《深度工作》（卡尔·纽波特）</strong></p>
+            <ul>
+              <li><strong>为什么读：</strong>进入职场后你会发现一天到晚被钉钉/飞书/邮件打断，真正能专注工作的时间很少。深度工作就是在无干扰状态下进行的高价值认知活动。</li>
+              <li><strong>方法：</strong>每天划出 2 小时「深度时间」关掉所有通知；早上做最难的事而不是先回消息；用日历 block 时间而不是靠意志力抵抗分心。</li>
+              <li><strong>应届生用：</strong>刚入职的 3 个月是学习能力最强的窗口，用深度工作方法最大化你的吸收效率。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
   <!-- ==================== TAB 2: 面试攻略 ==================== -->
   <section class="tab-content" id="tab-interview">
     <div class="section-intro">
@@ -925,12 +1101,103 @@
     </div>
   </section>
 
-</div>
+  <!-- ==================== TAB 4: 更多攻略 ==================== -->
+  <section class="tab-content" id="tab-more">
+    <div class="section-intro" style="border-left-color:var(--accent-blue);background:linear-gradient(135deg,#eaf2fd,transparent);">
+      从谈薪资到租房找房，从五险一金到职场第一年生存，这些「学校不教但职场必备」的知识都在这里。
+    </div>
+    <div class="accordion">
 
-<footer class="footer">
+      <!-- Card 1: 薪资谈判 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c1">💰</span>
+          <span class="card-title">薪资谈判指南：别让 HR 牵着走</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>什么时候谈：</strong>收到 Offer 后、HR 先出价前，不要主动报价。谁先出价谁被动。</p>
+            <p><strong>薪资结构拆解：</strong>月薪 ≠ 年收入。完整年收入 = 月薪 × 12 + 年终奖（保证还是浮动？）+ 补贴（餐补/交通/租房）+ 公积金（公司缴存部分也是钱）+ 股票/期权。</p>
+            <p><strong>谈薪话术策略：</strong></p>
+            <ul>
+              <li>被问「期望薪资」→ 「我对贵司的薪资体系还不了解，您能先说一下这个岗位的预算范围吗？」</li>
+              <li>HR说「只能给到 XX」→ 「感谢您的坦诚。我的期望是 XX，主要基于三个因素：我的实习项目经验匹配度、目前市场的同类岗位薪资范围、以及我对这个岗位能带来的价值。您看是否可以再争取一下？」</li>
+              <li>用其他 Offer 做 leverage → 不要撒谎（「我有BAT的Offer」如果实际上没有），但如果有就说「我目前也收到了另一个Offer，薪资在 XX 左右，但我更倾向于贵司，如果薪资能接近的话我会很快做决定」。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: 租房攻略 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c2">🏠</span>
+          <span class="card-title">毕业生租房攻略：第一次租房不踩坑</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>找房时机：</strong>入职前 2 周开始看，前 1 周定下来。毕业季（6-8月）是租房高峰，提前抢。</p>
+            <ul>
+              <li><strong>预算计算：</strong>房租不超过税后工资的 30%。月薪 10K 到手约 8K，房租控制在 2.4K 以内。超过这个比例会影响生活质量。</li>
+              <li><strong>渠道对比：</strong>贝壳/链家（房源真实但贵）、自如（省心但服务费高）、豆瓣租房小组（便宜但需鉴别）、闲鱼（个人转租多）。警惕「0 中介费」的小中介。</li>
+              <li><strong>看房 checklist：</strong>通勤时间实测（早晚高峰各走一次）、隔音（敲墙、听隔壁）、水电费怎么交（商用还是民用）、室友情况（几人住、性别、作息）、手机信号、有没有异味/潮气。</li>
+              <li><strong>签约注意事项：</strong>押金条款（什么情况扣钱）、转租条款（如果提前离职或换工作能不能转）、维修责任（电器坏了谁出钱）、中介费（通常一个月房租，可以谈）。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: 五险一金 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c3">🛡️</span>
+          <span class="card-title">五险一金入门：应届生必知</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <p><strong>五险 = 养老 + 医疗 + 失业 + 工伤 + 生育</strong>，一金 = 住房公积金。</p>
+            <ul>
+              <li><strong>医保最重要：</strong>入职后第一件事搞清楚怎么用医保卡。看病报销比例、定点医院、每年的报销额度。应届生身体好可能觉得用不上，但一次急诊就能回本。</li>
+              <li><strong>公积金是隐形工资：</strong>公司交的部分也是你的钱。5% vs 12% 的公积金比例差异巨大：月薪10K，5%的话公司交500，12%交1200，一年差8400。公积金可以租房提取、买房贷款。</li>
+              <li><strong>试用期也必须有五险一金：</strong>法律规定入职即缴。如果公司说「试用期不交」或「转正后补缴」，这是违法的。</li>
+              <li><strong>离职后处理：</strong>断缴不超过 3 个月一般影响不大；跨城市工作可以办理社保转移（越来越方便）；灵活就业可以自己交养老和医疗。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: 职场第一年 -->
+      <div class="card">
+        <button class="card-header" aria-expanded="false">
+          <span class="card-icon c1">🚀</span>
+          <span class="card-title">职场第一年生存手记</span>
+          <span class="card-arrow">▼</span>
+        </button>
+        <div class="card-body-wrap">
+          <div class="card-body">
+            <ul>
+              <li><strong>建立信任的 3 个关键动作：</strong>准时交付（哪怕做不完也要提前说）、主动汇报（不要等 leader 来问）、不传闲话（职场八卦听可以，别说）。</li>
+              <li><strong>如何跟 leader 高效 1:1：</strong>每周 30 分钟。准备 agenda：上周做了什么、卡在哪里、下周计划、需要什么支持。leader 的时间比你的宝贵，准备好再去。</li>
+              <li><strong>跨部门协作：</strong>搞清楚每个协作方的「激励」是什么。运营想要数据、研发想要清晰的排期、设计想要 Feedback。帮对方达成目标，对方才会帮你。</li>
+              <li><strong>积累可写进简历的成果：</strong>不要只做「执行者」，每完成一个任务问自己「这个结果能不能量化？能不能复用到其他场景？」用数据说话。</li>
+              <li><strong>什么时候该跳槽：</strong>连续半年没有成长、leader 不靠谱且无法改变、行业在走下坡路。不要因为「不开心」就冲动离职。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
   <p>毕业生求职指南 · 愿每一位毕业生都能找到心仪的工作</p>
   <p style="margin-top:4px">本指南内容仅供参考，具体情况请结合个人实际判断</p>
 </footer>
+
+<button class="export-pdf-btn" id="exportPdfBtn">📄 导出 PDF</button>
 
 <script>
 (function() {
@@ -953,7 +1220,9 @@
 
   // --- Accordion ---
   document.querySelectorAll('.card-header').forEach(function(header) {
-    header.addEventListener('click', function() {
+    header.addEventListener('click', function(e) {
+      // Don't toggle if clicking on the checkbox
+      if (e.target.getAttribute('data-checkbox') === 'true') return;
       var card = this.parentElement;
       var bodyWrap = card.querySelector('.card-body-wrap');
       var isOpen = card.classList.contains('open');
@@ -982,11 +1251,59 @@
     }, 150);
   });
 
+  // --- Checkbox / Progress ---
+  var progressWrap = document.getElementById('progressWrap');
+  var progressText = document.getElementById('progressText');
+  var progressFill = document.getElementById('progressFill');
+
+  function updateProgress() {
+    var allCards = document.querySelectorAll('.card');
+    var total = allCards.length;
+    var done = 0;
+    allCards.forEach(function(c) {
+      if (c.classList.contains('done')) done++;
+    });
+    if (total > 0) {
+      progressWrap.classList.add('visible');
+      progressText.textContent = done + ' / ' + total;
+      progressFill.style.width = Math.round(done / total * 100) + '%';
+    }
+  }
+
+  document.querySelectorAll('.card-checkbox').forEach(function(cb) {
+    cb.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var card = this.closest('.card');
+      card.classList.toggle('done');
+      // Save state
+      var doneIds = [];
+      document.querySelectorAll('.card.done').forEach(function(c) {
+        var title = c.querySelector('.card-title');
+        if (title) doneIds.push(title.textContent.trim());
+      });
+      try { localStorage.setItem('guideDone', JSON.stringify(doneIds)); } catch(e) {}
+      updateProgress();
+    });
+  });
+
+  // Restore saved state
+  try {
+    var saved = JSON.parse(localStorage.getItem('guideDone') || '[]');
+    if (saved.length > 0) {
+      document.querySelectorAll('.card').forEach(function(c) {
+        var title = c.querySelector('.card-title');
+        if (title && saved.indexOf(title.textContent.trim()) !== -1) {
+          c.classList.add('done');
+        }
+      });
+    }
+  } catch(e) {}
+  updateProgress();
+
   // --- Dark / Light mode ---
   var themeToggle = document.getElementById('themeToggle');
   var body = document.body;
 
-  // Check saved preference
   if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark');
     themeToggle.textContent = '☀️ 亮色模式';
@@ -1004,19 +1321,23 @@
     }
   });
 
-  // --- Print: expand all cards ---
-  var printStyleSheet = null;
+  // --- Print / Export PDF ---
+  document.getElementById('exportPdfBtn').addEventListener('click', function() {
+    // Expand all cards before printing
+    document.querySelectorAll('.card').forEach(function(card) {
+      card.classList.add('open');
+      var wrap = card.querySelector('.card-body-wrap');
+      if (wrap) wrap.style.maxHeight = wrap.scrollHeight + 'px';
+    });
+    window.print();
+  });
+
   window.addEventListener('beforeprint', function() {
     document.querySelectorAll('.card').forEach(function(card) {
       card.classList.add('open');
       var wrap = card.querySelector('.card-body-wrap');
-      wrap.style.maxHeight = wrap.scrollHeight + 'px';
+      if (wrap) wrap.style.maxHeight = wrap.scrollHeight + 'px';
     });
-  });
-
-  window.addEventListener('afterprint', function() {
-    // Restore closed state (but don't collapse cards that were manually opened)
-    // For simplicity, we leave cards open after print — user can manually close
   });
 
 })();
