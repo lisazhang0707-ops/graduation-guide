@@ -95,6 +95,15 @@
     z-index: 10;
     box-shadow: var(--shadow);
     padding: 0 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-nav::before, .tab-nav::after {
+    content: '';
+    flex-shrink: 0;
+    width: 8px;
   }
   .tab-btn {
     padding: 16px 28px;
